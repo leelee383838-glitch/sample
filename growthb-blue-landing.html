@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>블루커뮤니케이션즈 | 7년의 기록, 광고비가 절반만 일하는 이유</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+      color: #111827;
+      background-color: #f9fafb;
+      line-height: 1.6;
+    }
+    img, video {
+      max-width: 100%;
+      display: block;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .section {
+      padding: 80px 20px;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .section-subtitle {
+      font-size: 16px;
+      color: #6b7280;
+      margin-bottom: 32px;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 24px 50px rgba(37, 99, 235, 0.45);
+    }
+    .btn-secondary {
+      background-color: #fff;
+      color: #111827;
+      border-color: #e5e7eb;
+    }
+    .btn-secondary:hover {
+      background-color: #f3f4f6;
+    }
+    #hero {
+      padding: 96px 20px 80px;
+      background: radial-gradient(circle at top left, #e0f2fe 0, transparent 50%), #f9fafb;
+    }
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-kicker {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2563eb;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-size: 40px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .hero-highlight {
+      background: linear-gradient(120deg, #2563eb, #4f46e5);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-desc {
+      font-size: 16px;
+      color: #4b5563;
+      max-width: 480px;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 30px;
+      color: #6b7280;
+      font-size: 13px;
+    }
+    .hero-meta span {
+      position: relative;
+      padding-left: 16px;
+    }
+    .hero-meta span::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #facc15, #f97316);
+      transform: translateY(-50%);
+    }
+    .hero-video {
+      background: linear-gradient(145deg, #111827, #020617);
+      border-radius: 28px;
+      padding: 20px;
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.65);
+      position: relative;
+      overflow: hidden;
+      color: #e5e7eb;
+    }
+    .hero-video-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+    .hero-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .hero-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background-color: #4b5563;
+    }
+    .hero-dot.red { background-color: #f97373; }
+    .hero-dot.yellow { background-color: #facc15; }
+    .hero-dot.green { background-color: #4ade80; }
+    .hero-video-main {
+      border-radius: 18px;
+      border: 1px solid rgba(55, 65, 81, 0.8);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.24), transparent 60%);
+      padding: 18px 20px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-video-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #e5e7eb;
+    }
+    .hero-video-desc {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+    .hero-video-graph {
+      height: 140px;
+      position: relative;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
+      overflow: hidden;
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+    }
+    .hero-bar {
+      flex: 1;
+      background: linear-gradient(180deg, #38bdf8, #0ea5e9);
+      border-radius: 999px 999px 4px 4px;
+      opacity: 0.35;
+    }
+    .hero-bar:nth-child(1) { height: 34%; }
+    .hero-bar:nth-child(2) { height: 52%; }
+    .hero-bar:nth-child(3) { height: 41%; }
+    .hero-bar:nth-child(4) { height: 66%; opacity: 0.75; background: linear-gradient(180deg, #a855f7, #6366f1); }
+    .hero-bar:nth-child(5) { height: 45%; }
+    .hero-video-tag {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: #e5e7eb;
+    }
+    .media-test-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+      gap: 32px;
+      align-items: flex-start;
+    }
+    .media-note {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 8px;
+    }
+    .media-box {
+      border-radius: 20px;
+      background: radial-gradient(circle at top, #bfdbfe, #eff6ff);
+      padding: 18px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+    }
+    .media-box-inner {
+      border-radius: 16px;
+      border: 1px dashed #93c5fd;
+      padding: 16px;
+      background-color: #f9fafb;
+      font-size: 13px;
+      color: #4b5563;
+    }
+    .media-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #2563eb;
+      margin-bottom: 6px;
+    }
+    #naver-rule-change {
+      background-color: #0f172a;
+      color: #e5e7eb;
+    }
+    #naver-rule-change .section-title {
+      color: #f9fafb;
+    }
+    #naver-rule-change .section-subtitle {
+      color: #9ca3af;
+      max-width: 640px;
+    }
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .rule-card {
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 50%);
+      border-radius: 18px;
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 13px;
+    }
+    .rule-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #60a5fa;
+      margin-bottom: 6px;
+    }
+    .rule-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .rule-footer {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.6);
+      font-size: 13px;
+      color: #e5e7eb;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .rule-pill {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    footer {
+      background-color: #020617;
+      color: #6b7280;
+      padding: 16px 20px 22px;
+      font-size: 12px;
+    }
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 1px solid #111827;
+      padding-top: 14px;
+    }
+    @media (max-width: 960px) {
+      .hero-inner,
+      .media-test-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-video {
+        order: -1;
+      }
+      .rule-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 640px) {
+      #hero {
+        padding-top: 72px;
+      }
+      .section {
+        padding: 56px 16px;
+      }
+      .hero-title {
+        font-size: 30px;
+      }
+      .section-title {
+        font-size: 24px;
+      }
+      .rule-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .btn-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section id="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-kicker">BLUE COMMUNICATIONS</div>
+        <h1 class="hero-title">
+          7년의 기록:<br />
+          왜 여러분의 광고비는<br />
+          <span class="hero-highlight">절반만 일하고 있을까요?</span>
+        </h1>
+        <p class="hero-desc">
+          2018년 여름, 우리 돈 1억 원을 직접 태우며 발견한 것은
+          '광고 세팅'이 아니라 '그릇(홈페이지)'의 격차였습니다.
+          검색자의 구매 의도를 끝까지 담아내는 구조를 설계합니다.
+        </p>
+        <div class="btn-row">
+          <button class="btn-primary">우리 브랜드 비효율 진단 신청하기</button>
+          <button class="btn-secondary">1억 실험 스토리 보기</button>
+        </div>
+        <div class="hero-meta">
+          <span>7년간 축적된 검색 &amp; 그릇 데이터</span>
+          <span>1억 원 실험으로 검증한 최적화 문법</span>
+        </div>
+      </div>
+      <div class="hero-video">
+        <div class="hero-video-header">
+          <div class="hero-dots">
+            <span class="hero-dot red"></span>
+            <span class="hero-dot yellow"></span>
+            <span class="hero-dot green"></span>
+          </div>
+          <span>2018–2025 PERFORMANCE RECORDING</span>
+        </div>
+        <div class="hero-video-main">
+          <div class="hero-video-title">
+            광고비는 같은데, 매출 곡선은 왜 이렇게 다를까?
+          </div>
+          <div class="hero-video-desc">
+            월 1,000만 원을 쓰는 두 브랜드. 하나는 매출이 폭발하고,
+            다른 하나는 현상 유지도 버거웠습니다. 우리는 그 이유를
+            '광고 세팅'이 아닌 '홈페이지의 그릇'에서 찾았습니다.
+          </div>
+          <div class="hero-video-graph">
+            <div class="hero-bar"></div>
+            <div class="hero-bar"></div>
+            <div class="hero-bar"></div>
+            <div class="hero-bar"></div>
+            <div class="hero-bar"></div>
+          </div>
+          <div class="hero-video-tag">1억 실험 데이터 샘플</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="media-test" class="section">
+    <div class="container media-test-grid">
+      <div>
+        <h2 class="section-title">실제 영상 삽입 테스트</h2>
+        <p class="section-subtitle">
+          아래 영역의 <code>src="sample.mp4"</code> 부분을 실제 보유하신 영상 파일 경로로 교체하면,
+          바로 GrowthB 스타일 레이아웃 안에서 영상을 재생해 볼 수 있습니다.
+        </p>
+        <video controls poster="video-thumbnail.jpg">
+          <source src="sample.mp4" type="video/mp4" />
+          브라우저가 video 태그를 지원하지 않습니다.
+        </video>
+        <p class="media-note">
+          - 예: 프로젝트 루트에 <code>hero.mp4</code>를 넣고,
+          <code>src="hero.mp4"</code>로 바꾸면 됩니다.<br />
+          - 썸네일 이미지는 <code>video-thumbnail.jpg</code> 파일을 넣어서 교체하세요.
+        </p>
+      </div>
+      <div class="media-box">
+        <div class="media-box-inner">
+          <div class="media-label">IMAGE SECTION TEST</div>
+          <p>
+            아래 이미지는 실제 랜딩에서 포트폴리오 썸네일이나
+            현장 사진을 넣는 용도입니다.
+          </p>
+          <img src="sample-image.jpg" alt="샘플 이미지 (sample-image.jpg를 실제 이미지로 교체)" />
+          <p class="media-note">
+            - 프로젝트 루트에 <code>sample-image.jpg</code>를 두고 미리 보기 후,<br />
+            - 실제 사진 파일 이름으로 교체하면 됩니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="naver-rule-change" class="section">
+    <div class="container">
+      <h2 class="section-title">
+        검색에 집착할 수밖에 없었던 이유와,<br />
+        2026년, 네이버가 바꿔버린 규칙
+      </h2>
+      <p class="section-subtitle">
+        검색창에 무언가를 직접 타이핑한다는 것은 이미
+        “나는 지금 무언가를 살 준비가 됐다”는 강력한 의도가 있다는 뜻입니다.
+        지난 7년간 우리는 이 <strong>‘확실한 효율’</strong>에 기대어 성장해 왔습니다.
+        하지만 2026년, 이 시장에 거대한 균열이 생기고 있습니다.
+      </p>
+      <div class="rule-grid">
+        <div class="rule-card">
+          <div class="rule-label">Rule 01</div>
+          <div class="rule-title">품질지수 소멸 (2026 상반기)</div>
+          네이버 검색광고의 기존 품질지수가 사라집니다. 예전처럼
+          홈페이지가 부실해도 입찰가만 잘 관리하면 명당을 사수하던
+          시대는 끝났습니다.
+        </div>
+        <div class="rule-card">
+          <div class="rule-label">Rule 02</div>
+          <div class="rule-title">검색광고 최적화 지수 도입</div>
+          네이버는 <strong>검색광고 최적화 지수</strong>를 도입합니다.
+          AI가 여러분의 홈페이지를 사람처럼 읽고, 손님이 찾는 질문에
+          제대로 된 답을 주는지 평가합니다.
+        </div>
+        <div class="rule-card">
+          <div class="rule-label">Rule 03</div>
+          <div class="rule-title">적은 돈으로 좋은 자리, 단 하나의 조건</div>
+          이 지수가 높아야만 남들보다 훨씬 적은 돈을 쓰고도 가장
+          좋은 자리에 설 수 있습니다. 이제는 <strong>AI가 사랑하는 구조</strong>가
+          필수입니다.
+        </div>
+      </div>
+      <div class="rule-footer">
+        <div>
+          이제 문제는 “얼마를 쓰느냐”가 아니라,<br />
+          <strong>“그 돈이 담기는 그릇이 AI와 사람 모두에게 설득력 있는가”</strong>입니다.
+        </div>
+        <div class="rule-pill">
+          AI &amp; HUMAN FRIENDLY WEBSITE
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© BLUE COMMUNICATIONS. All rights reserved.</div>
+      <div>데모 랜딩 · GrowthB 레이아웃 + Blue 콘텐츠</div>
+    </div>
+  </footer>
+</body>
+</html>
+

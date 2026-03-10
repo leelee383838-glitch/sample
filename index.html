@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>연관 검색어 추출 | 키워드 대시보드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <header class="dashboard-header">
+      <div class="header-row">
+        <h1><span class="icon" data-lucide="search"></span> 연관 검색어 추출</h1>
+        <a href="#" id="btnMyPage" class="btn-my-page" title="마이 페이지">
+          <span class="icon" data-lucide="user"></span>
+          마이 페이지
+        </a>
+      </div>
+      <p class="subtitle">기준 키워드로 연관 키워드를 생성하고 관리하세요</p>
+    </header>
+
+    <main class="dashboard-main">
+      <section class="card input-section">
+        <h2 class="card-title"><span class="icon" data-lucide="keyboard"></span> 기준 키워드</h2>
+        <div class="keyword-input-wrap">
+          <input
+            type="text"
+            id="baseKeyword"
+            placeholder="예: 대출, 보험, 인테리어"
+            maxlength="100"
+            autocomplete="off"
+          />
+          <button type="button" id="btnSearch" class="btn btn-primary">
+            <span class="icon" data-lucide="sparkles"></span>
+            연관 키워드 생성
+          </button>
+        </div>
+      </section>
+
+      <section class="card options-section">
+        <h2 class="card-title"><span class="icon" data-lucide="sliders-horizontal"></span> 옵션</h2>
+        <div class="options-grid">
+          <div class="option-group">
+            <label class="option-label">결과 개수</label>
+            <select id="resultCount">
+              <option value="50">50개</option>
+              <option value="100" selected>100개</option>
+              <option value="200">200개</option>
+            </select>
+          </div>
+          <div class="option-group">
+            <label class="option-label">정렬 기준</label>
+            <select id="sortBy">
+              <option value="relevance">연관도순</option>
+              <option value="searchVolume">검색량순</option>
+              <option value="mixed">혼합순</option>
+            </select>
+          </div>
+        </div>
+        <div class="option-group expansion-group">
+          <label class="option-label"><span class="icon" data-lucide="expand"></span> 키워드 확장</label>
+          <p class="option-hint">기준 키워드와 함께 쓸 확장어를 입력하세요 (예: 대출 → 기업, 개인). 최대 5개, 병렬로 연관 키워드를 뽑습니다.</p>
+          <div class="expansion-inputs" id="expansionInputs">
+            <input type="text" id="expansion1" placeholder="예: 기업" maxlength="30" autocomplete="off" />
+            <input type="text" id="expansion2" placeholder="예: 개인" maxlength="30" autocomplete="off" />
+            <input type="text" id="expansion3" placeholder="예: 신용" maxlength="30" autocomplete="off" />
+            <input type="text" id="expansion4" placeholder="예: 주택" maxlength="30" autocomplete="off" />
+            <input type="text" id="expansion5" placeholder="예: 자동차" maxlength="30" autocomplete="off" />
+          </div>
+        </div>
+      </section>
+
+      <section class="card result-section" id="resultSection" hidden>
+        <div class="result-header">
+          <h2 class="card-title"><span class="icon" data-lucide="list"></span> 연관 키워드 결과</h2>
+          <div class="result-actions">
+            <button type="button" id="btnCopyAll" class="btn btn-secondary btn-sm">
+              <span class="icon" data-lucide="copy"></span>
+              전체 복사
+            </button>
+            <button type="button" id="btnDownloadCsv" class="btn btn-primary btn-sm">
+              <span class="icon" data-lucide="download"></span>
+              CSV 다운로드
+            </button>
+          </div>
+        </div>
+        <div class="view-tabs">
+          <button type="button" class="tab active" data-view="list"><span class="icon" data-lucide="list-ordered"></span> 리스트</button>
+          <button type="button" class="tab" data-view="tags"><span class="icon" data-lucide="tags"></span> 태그</button>
+        </div>
+        <div class="result-groups" id="resultGroups"></div>
+      </section>
+
+      <section class="card empty-state" id="emptyState">
+        <div class="empty-icon"><span class="icon" data-lucide="search-x"></span></div>
+        <p>기준 키워드를 입력한 뒤 <strong>연관 키워드 생성</strong>을 눌러 주세요.</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- 마이 페이지 모달 (API 연동 설정) -->
+  <div class="modal-overlay" id="myPageModal" hidden>
+    <div class="modal card">
+      <div class="modal-header">
+        <h2><span class="icon" data-lucide="settings"></span> 마이 페이지</h2>
+        <button type="button" class="btn-close" id="btnCloseMyPage" aria-label="닫기">
+          <span class="icon" data-lucide="x"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">API 키를 등록하면 연관 키워드 추출 시 실제 API를 사용할 수 있습니다. (현재는 더미 데이터 사용)</p>
+        <div class="api-key-section">
+          <label class="option-label">
+            <span class="icon" data-lucide="key"></span>
+            네이버 검색광고 API
+          </label>
+          <input type="password" id="apiKeyNaver" placeholder="API 키 입력 (선택)" autocomplete="off" />
+          <p class="api-hint"><a href="https://searchad.naver.com" target="_blank" rel="noopener">네이버 검색광고</a>에서 키워드 API 키 발급</p>
+        </div>
+        <div class="api-key-section">
+          <label class="option-label">
+            <span class="icon" data-lucide="bot"></span>
+            OpenAI (ChatGPT) API
+          </label>
+          <input type="password" id="apiKeyOpenAI" placeholder="sk-... API 키 입력 (선택)" autocomplete="off" />
+          <p class="api-hint"><a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">OpenAI API 키</a> 발급</p>
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="btnSaveApiKeys" class="btn btn-primary">저장</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="services/apiKeys.js"></script>
+  <script src="services/keywordService.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

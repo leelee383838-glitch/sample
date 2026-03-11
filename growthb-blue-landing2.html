@@ -119,6 +119,36 @@
     .cta { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: #e2e8f0; text-align: center; }
     .cta p { max-width: 780px; margin: 0 auto; color: #bfdbfe; }
 
+    /* Screenshots gallery */
+    .gallery { background: #0b1226; color: #e5e7eb; }
+    .gallery .lead { color: #cbd5e1; }
+    .gallery h2 { color: #fff; }
+    .gallery-grid {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .shot {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,.35);
+      background: rgba(15,23,42,.65);
+      box-shadow: 0 18px 55px rgba(2,6,23,.6);
+    }
+    .shot a { display: block; }
+    .shot img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .shot-cap {
+      padding: 12px 14px 14px;
+      font-size: 13px;
+      color: #cbd5e1;
+      border-top: 1px solid rgba(148,163,184,.25);
+    }
+
     @media (max-width: 1024px) {
       .hero-grid, .solution-grid, .portfolio-grid { grid-template-columns: 1fr; }
       .hero-metrics { grid-template-columns: 1fr; }
@@ -133,6 +163,26 @@
       .container { width: min(1160px, calc(100% - 28px)); }
       .monitor-body, .insight-grid, .diag-grid { grid-template-columns: 1fr; }
       .venn-title, .venn-brand, .insight-title { font-size: 40px; }
+
+      /* Mobile-first fix for venn section: avoid circles + overflow */
+      .venn-shell { padding: 22px 16px; border-radius: 22px; }
+      .venn-grid { grid-template-columns: 1fr; gap: 12px; }
+      .venn-item {
+        aspect-ratio: auto;
+        border-radius: 18px;
+        padding: 22px 16px;
+        max-width: none;
+        background: linear-gradient(180deg, rgba(59,130,246,.35), rgba(15,23,42,.92));
+      }
+      .venn-item h3 { font-size: 22px; }
+      .venn-item p { font-size: 14px; }
+
+      /* Gallery on mobile */
+      .shot { border-radius: 16px; }
+    }
+
+    @media (min-width: 900px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -202,6 +252,40 @@
         <div class="solution-item"><strong>04. 실행형 운영 체계</strong>리포트 제출로 끝나지 않고 카피·소재·랜딩 섹션까지 운영안으로 전환해 즉시 테스트합니다.</div>
         <div class="solution-item"><strong>05. 경영진 관점 리포팅</strong>노출·클릭 중심이 아닌 매출, 리드품질, 상담→계약 전환율 중심으로 월간 성과를 보고합니다.</div>
         <div class="solution-item"><strong>06. 업종별 플레이북</strong>B2B, 병의원, 교육, 커머스 등 업종 특성에 맞춘 퍼널 전략과 예산 배분 템플릿을 적용합니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="screens">
+    <div class="container">
+      <div class="kicker" style="color:#93c5fd">통합 리포트 화면 예시</div>
+      <h2>모바일/PC 모두에서 보는 운영 대시보드</h2>
+      <p class="lead">로그인/성과 개요/키워드 분석/지역 분석 등 실제 운영 화면을 기준으로, 상담·구매·문의 전환값까지 연결된 리포팅 흐름을 제공합니다. 모바일에서도 확인 가능하고, PC에서는 더 넓은 정보 밀도로 분석할 수 있게 설계합니다.</p>
+      <div class="gallery-grid">
+        <figure class="shot">
+          <a href="assets/blue-dashboard-1.png" target="_blank" rel="noopener">
+            <img src="assets/blue-dashboard-1.png" alt="BlueComms 로그인 화면 예시" loading="lazy" />
+          </a>
+          <figcaption class="shot-cap">로그인 화면 예시</figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="assets/blue-dashboard-2.png" target="_blank" rel="noopener">
+            <img src="assets/blue-dashboard-2.png" alt="Performance Overview 대시보드 예시" loading="lazy" />
+          </a>
+          <figcaption class="shot-cap">Performance Overview (통합 성과)</figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="assets/blue-dashboard-3.png" target="_blank" rel="noopener">
+            <img src="assets/blue-dashboard-3.png" alt="Keyword Deep-Dive 리포트 예시" loading="lazy" />
+          </a>
+          <figcaption class="shot-cap">Keyword Deep-Dive (키워드 성과)</figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="assets/blue-dashboard-4.png" target="_blank" rel="noopener">
+            <img src="assets/blue-dashboard-4.png" alt="Regional Analysis 리포트 예시" loading="lazy" />
+          </a>
+          <figcaption class="shot-cap">Regional Analysis (지역 성과)</figcaption>
+        </figure>
       </div>
     </div>
   </section>
